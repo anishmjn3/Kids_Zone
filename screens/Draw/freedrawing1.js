@@ -141,7 +141,7 @@ export default class App extends Component {
                             :
                             <Image
                                 source={images[x[i - 1]]}
-                                style={{ height: 75, width: 75 }}
+                                style={{ height: "50%", width: Dimensions.get('screen').width/7 }}
                             />
                         }
                     </TouchableOpacity>
@@ -160,6 +160,7 @@ export default class App extends Component {
                 styles.centerStyle
             ]}>
                 {/* <Text>{colorchange1}</Text> */}
+                <View style={{height:"10%"}}></View>
                 <View style={[
                     styles.sketchboxStyle,
                     styles.shadaweffectStyle
@@ -247,7 +248,7 @@ export default class App extends Component {
                 <View
                     style={[
                         styles.centerStyle,
-                        { height: 150, flexDirection: 'row', justifyContent: 'space-around' }
+                        { height: "15%", flexDirection: 'row', justifyContent: 'space-around' }
                     ]}
                 >
                     {this.renderResults()}
@@ -260,7 +261,7 @@ export default class App extends Component {
                             this.clearComp();
                         }}
                     >
-                        <Text style={{ fontSize: 20, color: 'white' }}>Clear</Text>
+                        <Text style={{ fontSize: Dimensions.get('screen').height*0.025, color: 'white' }}>Clear</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={[styles.clearButtonStyle, styles.centerStyle]}
@@ -271,10 +272,11 @@ export default class App extends Component {
                             // this.canvas.save()
                         }}
                     >
-                        <Text style={{ fontSize: 20, color: 'white' }}>Undo</Text>
+                        <Text style={{ fontSize: Dimensions.get('screen').height*0.025, color: 'white' }}>Undo</Text>
                     {/* <Text>{this.state.colorchange}</Text> */}
                     </TouchableOpacity>
                 </View>
+                <View style={{height:"5%"}}></View>
             </View>
         );
     }
@@ -317,10 +319,10 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     clearButtonStyle: {
-        width: 100,
-        height: 50,
+        width: Dimensions.get('screen').width*0.25,
+        height: Dimensions.get('screen').height*0.06,
         backgroundColor: 'red',
-        marginBottom: 20,
+        marginBottom: Dimensions.get('screen').width*0.05,
         borderRadius: 10,
     },
     strokeColorButton: {
@@ -335,7 +337,7 @@ const styles = StyleSheet.create({
         // justifyContent: 'space-between'
     },
     sketchboxStyle: {
-        height: Dimensions.get('screen').width * 0.8,
+        height: Dimensions.get('screen').height * 0.40,
         width: Dimensions.get('screen').width * 0.8,
         borderColor: 'grey',
         // flex:1
