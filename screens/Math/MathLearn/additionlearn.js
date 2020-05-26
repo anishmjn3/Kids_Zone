@@ -48,7 +48,7 @@ export default class MyProject extends Component {
                             "#910228",
                             '#6a0f0b'//dark brown
                         ]}
-                        style={[styles.outerButtonStyle, styles.circleStyle]}
+                        style={[styles.circleStyle,styles.centerAlignStyle]}
                         start={{ x: 0.0, y: 0.05 }}
                         end={{ x: 0.5, y: 1 }}
                         locations={[0.2, 0.4, 0.75]}
@@ -65,10 +65,10 @@ export default class MyProject extends Component {
 
         return (
 
-            <View style={styles.MainContainer}>
+            <View style={[styles.MainContainer,styles.centerAlignStyle]}>
                 <ImageBackground
                     source={require('./../../wood.jpg')}
-                    style={styles.imagebackgroundStyle}
+                    style={[styles.imagebackgroundStyle,styles.centerAlignStyle]}
                 >
                     <View style={{ flexDirection: 'row' }}>
                         {/* <ScrollView horizontal={true}> */}
@@ -96,7 +96,8 @@ export default class MyProject extends Component {
                             ]}
                             style={[
                                 styles.table,
-                                { flexDirection: 'column' }
+                                styles.centerAlignStyle
+                                // { flexDirection: 'column' }
                             ]}
                             start={{ x: 0.0, y: 0.05 }}
                             end={{ x: 0.4, y: 1 }}

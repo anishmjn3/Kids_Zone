@@ -13,7 +13,7 @@ import {
     Button
 } from 'react-native';
 
-import RNSketchCanvas from '@terrylinla/react-native-sketch-canvas';
+import RNSketchCanvas, { SketchCanvas } from '@terrylinla/react-native-sketch-canvas';
 import _ from 'lodash';
 import Tflite from 'tflite-react-native';
 import RNFS from 'react-native-fs';
@@ -44,8 +44,8 @@ export default class App extends Component {
             recognitions: [],
             timePassed: false,
             path: null,
-            colorchange:'#000000',
-            eraserstate:false,
+            colorvalue: '#000000',
+            eraserstate: false,
         };
         this.onSelectModel('model');
     }
@@ -54,18 +54,6 @@ export default class App extends Component {
         this.setState({ recognitions: [] });
     }
 
-    Detect = () => {
-        this.canvas.save()
-        // this.renderResults()
-    }
-    eraseTool = () => {
-        // this.canvas.
-        // return this.state.toolSelected
-    }
-    undocomp = () => {
-        this.canvas.undo();
-        this.canvas.save();
-    }
 
     onSelectModel(model) {
         this.setState({ model });
@@ -83,21 +71,8 @@ export default class App extends Component {
             });
     }
 
-    onSketchSave() {
-        return (
-            <View style={styles.functionButton}>
-                <Text style={{ color: 'white' }}>Save</Text>
-            </View>
-        )
-    }
-    onSketchSavedPreference() {
-        return {
-            folder: 'RNSketchCanvas',
-            filename: String(Math.ceil(Math.random() * 100000000)),
-            transparent: false,
-            imageType: 'png'
-        }
-    }
+
+
     renderResults() {
         const { model, recognitions, imageHeight, imageWidth } = this.state;
         var i = 0;
@@ -125,7 +100,7 @@ export default class App extends Component {
 
 
             return (
-                <View style={[styles.centerStyle,{marginLeft:'3%'}]}>
+                <View style={[styles.centerStyle, { marginLeft: '3%' }]}>
                     <TouchableOpacity
                         onPress={() =>
                             Alert.alert(res["label"])
@@ -133,15 +108,13 @@ export default class App extends Component {
                     >
                         <Text key={id} style={styles.cameraText}>
                             {x[i - 1]}
-                            {/* {(res["confidence"] * 100).toFixed(0)} */}
-                            {/* {y[i - 1]} */}
                         </Text>
                         {(x[i - 1] == '') ?
                             <Text></Text>
                             :
                             <Image
                                 source={images[x[i - 1]]}
-                                style={{ height: "50%", width: Dimensions.get('screen').width/7 }}
+                                style={{ height: "50%", width: Dimensions.get('screen').width / 7 }}
                             />
                         }
                     </TouchableOpacity>
@@ -152,83 +125,31 @@ export default class App extends Component {
     }
 
     render() {
-        const {colorchange,model, source, imageHeight, imageWidth, imageUri } = this.state;
-        var colorchange1=this.state.colorchange;
+        const { colorchange, model, source, imageHeight, imageWidth, imageUri } = this.state;
+        var colorchange1 = this.state.colorchange;
         return (
             <View style={[
                 styles.container,
                 styles.centerStyle
             ]}>
                 {/* <Text>{colorchange1}</Text> */}
-                <View style={{height:"10%"}}></View>
+                <View style={{ height: "10%" }}></View>
                 <View style={[
                     styles.sketchboxStyle,
                     styles.shadaweffectStyle
                 ]}>
-                    <RNSketchCanvas
-                        ref={ref => (this.canvas = ref)}
-                        containerStyle={[
-                            {
-                                backgroundColor: 'white',
-                                flex: 1
-                            },
-                            // styles.centerStyle
-                        ]
-                        }
-                        canvasStyle={
-                            {
-                                backgroundColor: 'transparent',
-                                flex: 1
-                            }
-                        }
-                        defaultStrokeIndex={0}
-                        defaultStrokeWidth={5}
-                        savePreference={() => {
-                            return {
-                                folder: 'RNSketchCanvas',
-                                filename: String(Math.ceil(Math.random() * 100000000)),
-                                transparent: false,
-                                imageType: 'png'
-                            }
-                        }
 
-                        }
-                        strokeColors={[{color:'#000000'},{color:'#ffffff'}]}
-                        // undoComponent={<View style={styles.functionButton}><Text style={{color: 'white'}}>Undo</Text></View>}
-
-                        // strokeSelectedComponent={(color, index, changed) => {
-                        //     return (
-                        //       <View style={[{ backgroundColor: color, borderWidth: 2 }, styles.strokeColorButton]} />
-                        //     )
-                        //   }}
-                        //   strokeWidthComponent={(w) => {
-                        //     return (<View style={styles.strokeWidthButton}>
-                        //       <View  style={{
-                        //         backgroundColor: 'white', marginHorizontal: 2.5,
-                        //         width: Math.sqrt(w / 3) * 10, height: Math.sqrt(w / 3) * 10, borderRadius: Math.sqrt(w / 3) * 10 / 2
-                        //       }} />
-                        //     </View>
-                        //   )}}
-                        strokeComponent={color => (
-                            <View 
-                            style={[
-                                { backgroundColor: color,borderWidth:2,height:30,width:70 },
-                                styles.centerStyle
-                                //  styles.strokeColorButton
-                                ]} 
-                            >
-                                <Text>Eraser</Text>
-                            </View>
-                          )}
-                          
-                        // eraseComponent={<View style={styles.functionButton}><Text style={{ color: 'white' }}>Eraser</Text></View>}
-                        onStrokeEnd={this.Detect}
-                        onSketchSaved={(success, filePath) => {
-                            // alert('filePath: ' + filePath); 
-                            console.log(filePath);
-                            path = filePath;
+                    <SketchCanvas
+                        ref={ref => { this.canvas = ref }}
+                        style={{ flex: 1, backgroundColor: 'white' }}
+                        strokeColor={this.state.colorvalue}
+                        strokeWidth={5}
+                        onSketchSaved={(success, path) => {
+                            // alert('filePath: ' + path);
+                            console.log(path);
+                            // path = filePath;
                             tflite.runModelOnImage({
-                                path: filePath,
+                                path: path,
                                 imageMean: 128.0,
                                 imageStd: 128.0,
                                 numResults: 3,
@@ -240,9 +161,21 @@ export default class App extends Component {
                                     else
                                         this.setState({ recognitions: res });
                                 });
-                            RNFS.unlink(filePath);
+                            RNFS.unlink(path);
 
                         }}
+                        onStrokeEnd={() => {
+                            this.canvas.save(
+                                "png",
+                                false,
+                                'RNSketchCanvas',
+                                String(Math.ceil(Math.random() * 100000000)),
+                                true,
+                                false,
+                                false
+                            )
+                        }
+                        }
                     />
                 </View>
                 <View
@@ -255,28 +188,43 @@ export default class App extends Component {
 
                 </View>
                 <View style={styles.centerStyle}>
-                    <TouchableOpacity
-                        style={[styles.clearButtonStyle, styles.centerStyle]}
-                        onPress={() => {
-                            this.clearComp();
-                        }}
-                    >
-                        <Text style={{ fontSize: Dimensions.get('screen').height*0.025, color: 'white' }}>Clear</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={[styles.clearButtonStyle, styles.centerStyle]}
-                        onPress={() => {
-                            this.canvas.undo();
-                            // colorchange="#ffffff"
-                            this.setState({recognitions:[]})
-                            // this.canvas.save()
-                        }}
-                    >
-                        <Text style={{ fontSize: Dimensions.get('screen').height*0.025, color: 'white' }}>Undo</Text>
-                    {/* <Text>{this.state.colorchange}</Text> */}
-                    </TouchableOpacity>
+                    <View style={[styles.clearButtonStyle, { backgroundColor: "#f1f03d" }]}>
+                        <TouchableOpacity
+                            style={[
+                                styles.clearButtonStyle,
+                                styles.centerStyle,
+                                { backgroundColor: (this.state.colorvalue == 'black') ? '#e70101' : '#eceb09' }
+                            ]}
+                            onPress={() => {
+                                if (this.state.colorvalue == 'black')
+                                    this.setState({ colorvalue: 'white' })
+                                else
+                                    this.setState({ colorvalue: 'black' })
+                            }
+                            }
+                        >
+                            <Text
+                                style={[
+                                    styles.clearbuttonText,
+                                    {color:(this.state.colorvalue=='black')?'white':'black'}
+                                ]}
+                            >
+                                Eraser
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={[styles.clearButtonStyle, { backgroundColor: "#f1f03d" }]}>
+                        <TouchableOpacity
+                            style={[styles.clearButtonStyle, styles.centerStyle]}
+                            onPress={() => {
+                                this.clearComp();
+                            }}
+                        >
+                            <Text style={styles.clearbuttonText}>Clear</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-                <View style={{height:"5%"}}></View>
+                <View style={{ height: "5%" }}></View>
             </View>
         );
     }
@@ -319,12 +267,20 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     clearButtonStyle: {
-        width: Dimensions.get('screen').width*0.25,
-        height: Dimensions.get('screen').height*0.06,
-        backgroundColor: 'red',
-        marginBottom: Dimensions.get('screen').width*0.05,
+        width: Dimensions.get('screen').width * 0.25,
+        height: Dimensions.get('screen').height * 0.06,
+        backgroundColor: '#e70101',
+        marginBottom: Dimensions.get('screen').width * 0.05,
         borderRadius: 10,
     },
+    clearButtonBackStyle: {
+        width: Dimensions.get('screen').width * 0.25,
+        height: Dimensions.get('screen').height * 0.06,
+        backgroundColor: '#f1f03d',
+        marginBottom: Dimensions.get('screen').width * 0.05,
+        borderRadius: 10,
+    },
+
     strokeColorButton: {
         marginHorizontal: 2.5,
         marginVertical: 8,
@@ -372,6 +328,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 5,
+    },
+    clearbuttonText: {
+        fontSize: Dimensions.get('screen').height * 0.025,
+        color: 'white'
     }
 });
 

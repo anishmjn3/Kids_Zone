@@ -1,14 +1,17 @@
 import {StyleSheet,Dimensions} from 'react-native';
 export {styles};
 
+const Dheight = Dimensions.get('window').height;
+const Dwidth = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         position: 'relative'
     },
     backgroundimageStyle: {
-        height: Dimensions.get('window').height,
-        width: Dimensions.get('window').width,
+        height: Dheight,
+        width: Dwidth,
         flex: 1
     },
     aligncenterStyle: {
@@ -33,7 +36,7 @@ const styles = StyleSheet.create({
     headerfont: {
         color: 'white',
         // fontSize: 
-        fontSize: Dimensions.get('screen').height * 0.04
+        fontSize: Dheight * 0.04
     },
     firstrow: {
         flexDirection: 'row',
@@ -42,24 +45,24 @@ const styles = StyleSheet.create({
         marginBottom:'5%'
     },
     learnoutcirclestyle:{
-        height:Dimensions.get('window').height * 0.14,
-        width:Dimensions.get('window').height * 0.14,
-        borderRadius:Dimensions.get('window').height * 0.14
+        height:Dheight * 0.14,
+        width:Dheight * 0.14,
+        borderRadius:Dheight * 0.14
         // borderRadius:'100%'
     },
     learnincirclestyle: {
-        height: Dimensions.get('window').height * 0.15,
-        width: Dimensions.get('window').height * 0.15,
+        height: Dheight * 0.15,
+        width: Dheight * 0.15,
         // borderRadius:Dimensions.get('window').height * 0.16
     },
     learnButtonTextStyle: {
-        fontSize: Dimensions.get('window').height*0.025,
+        fontSize: Dheight*0.025,
         color: '#d2d31b',
         textAlign: 'center'
     },
     outerButtonStyle: {
-        height: Dimensions.get('window').height * 0.12,
-        width: Dimensions.get('window').height * 0.18,
+        height: Dheight * 0.12,
+        width: Dheight * 0.18,
         backgroundColor: '#6a0f0b',//brown color
         borderRightWidth: 3,
         borderRightColor: '#262627',
@@ -75,7 +78,7 @@ const styles = StyleSheet.create({
         width:'100%'
     },
     testButtonTextStyle: {
-        fontSize: Dimensions.get('window').height*0.024,
+        fontSize: Dheight*0.024,
         color: '#81d67a',
         textAlign: 'center'
     },

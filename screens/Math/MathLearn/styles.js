@@ -1,55 +1,43 @@
-import {StyleSheet,Dimensions} from 'react-native';
-export {styles};
+import { StyleSheet, Dimensions } from 'react-native';
+export { styles };
+const Dheight = Dimensions.get('window').height;
+const Dweight = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     MainContainer: {
         flex: 1,
-        // backgroundColor:'#483d8b',
-        // opacity: 3,
+    },
+    centerAlignStyle: {
         justifyContent: 'center',
-        alignItems: 'center',
+        alignContent: 'center',
+        alignItems: 'center'
     },
     imagebackgroundStyle: {
-        height: Dimensions.get('window').height,
-        width: Dimensions.get('window').width,
+        height: Dheight,
+        width: Dweight,
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
     },
-    table:{
-        height:Dimensions.get('window').height/1.7,
-        width:Dimensions.get('window').width/1.7,
-        borderRadius:10,
-        backgroundColor:'#ca3f22',
-        justifyContent:'center',
-        alignContent:'center'
+    table: {
+        height: Dheight * 0.6,
+        width: Dweight * 0.6,
+        borderRadius: 10,
+        backgroundColor: '#ca3f22',
     },
-    tabletext:{
-        fontSize:Dimensions.get('window').height*0.037,
-        justifyContent:'center',
-        textAlign:'center',
-        color:'white'
+    tabletext: {
+        fontSize: Dheight *0.6 /16,
+        textAlign: 'center',
+        color: 'white'
     },
-    selectbutton:{
-        // height:70,
-        // width:70,
-        backgroundColor:'#a40b04',
-        marginLeft:10,
-        borderRadius:35,
-        justifyContent:'center',
-        marginBottom:10
+    selectbutton: {
+        backgroundColor: '#a40b04',
+        marginLeft: Dweight/42,
+        // borderRadius: 35,
+        marginBottom: Dheight/42
     },
-    outerButtonStyle: {
-        justifyContent: 'center',
-        padding: 10,
-        alignItems: 'center',
-        alignContent:'center',
-        justifyContent:'center',
-        },
-        circleStyle:{
-            
-            width:Dimensions.get('window').width/6,
-            height:Dimensions.get('window').width/6,
-            borderRadius:35
-        }
+    circleStyle: {
+
+        width: Dweight / 6,
+        height: Dweight / 6,
+        borderRadius: Dweight / 6
+    }
 })
