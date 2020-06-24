@@ -4,6 +4,7 @@ import {
     View,
     Text,
     StyleSheet,
+    LayoutAnimation,
     Dimensions,
     Image,
 } from 'react-native';
@@ -11,6 +12,7 @@ import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {styles} from './styles';
 export default class MainScreen extends React.Component {
+    
     render() {
         return (
             <View style={[styles.container]}>
@@ -46,6 +48,7 @@ export default class MainScreen extends React.Component {
 
                                         <Image source={require('./drawlogo.png')}
                                             style={styles.drawmathimageStyle}
+                                            resizeMode="contain"
                                         />
                                         <Text style={styles.textStyle}>Drawing</Text>
                                         <Text style={styles.textStyle}>Games</Text>
@@ -82,6 +85,7 @@ export default class MainScreen extends React.Component {
 
                                         <Image source={require('./math.png')}
                                             style={styles.drawmathimageStyle}
+                                            resizeMode="contain"
                                         />
                                         <Text style={styles.textStyle}>Math</Text>
                                         <Text style={styles.textStyle}>Games</Text>

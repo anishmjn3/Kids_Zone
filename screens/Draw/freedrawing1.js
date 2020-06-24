@@ -44,8 +44,9 @@ export default class App extends Component {
             recognitions: [],
             timePassed: false,
             path: null,
-            colorvalue: '#000000',
+            colorvalue: 'black',
             eraserstate: false,
+            strokevalue:5
         };
         this.onSelectModel('model');
     }
@@ -115,6 +116,7 @@ export default class App extends Component {
                             <Image
                                 source={images[x[i - 1]]}
                                 style={{ height: "50%", width: Dimensions.get('screen').width / 7 }}
+                                resizeMode="contain"
                             />
                         }
                     </TouchableOpacity>
@@ -143,7 +145,7 @@ export default class App extends Component {
                         ref={ref => { this.canvas = ref }}
                         style={{ flex: 1, backgroundColor: 'white' }}
                         strokeColor={this.state.colorvalue}
-                        strokeWidth={5}
+                        strokeWidth={this.state.strokevalue}
                         onSketchSaved={(success, path) => {
                             // alert('filePath: ' + path);
                             console.log(path);
@@ -193,14 +195,21 @@ export default class App extends Component {
                             style={[
                                 styles.clearButtonStyle,
                                 styles.centerStyle,
+                                styles.shadaweffectStyle,
                                 { backgroundColor: (this.state.colorvalue == 'black') ? '#e70101' : '#eceb09' }
                             ]}
                             onPress={() => {
                                 if (this.state.colorvalue == 'black')
+                                {
                                     this.setState({ colorvalue: 'white' })
-                                else
+                                this.setState({strokevalue:15})
+                                }
+                                    else
+                                    {
                                     this.setState({ colorvalue: 'black' })
-                            }
+                                    this.setState({strokevalue:5})
+                                }
+                                }
                             }
                         >
                             <Text
@@ -213,7 +222,11 @@ export default class App extends Component {
                             </Text>
                         </TouchableOpacity>
                     </View>
-                    <View style={[styles.clearButtonStyle, { backgroundColor: "#f1f03d" }]}>
+                    <View style={[
+                        styles.clearButtonStyle,
+                        styles.shadaweffectStyle, 
+                        { backgroundColor: "#f1f03d" }
+                        ]}>
                         <TouchableOpacity
                             style={[styles.clearButtonStyle, styles.centerStyle]}
                             onPress={() => {

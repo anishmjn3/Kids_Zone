@@ -16,7 +16,7 @@ import RadialGradient from 'react-native-radial-gradient';
 
 
 export default class StartScreen extends React.Component {
- 
+
   componentWillMount() {
     setInterval(() => {
       this.props.navigation.navigate('Stackk');
@@ -31,7 +31,11 @@ export default class StartScreen extends React.Component {
           stops={[0.01, .9]}
           radius={Dimensions.get('screen').width}
         >
-          <Image source={require('./logo3.png')} style={styles.image} />
+          <Image
+            source={require('./logo3.png')}
+            style={styles.image}
+            resizeMode="contain"
+          />
           <ActivityIndicator size='large' />
 
         </RadialGradient>

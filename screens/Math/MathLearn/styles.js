@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
         marginBottom: Dheight/42
     },
     circleStyle: {
-
         width: Dweight / 6,
         height: Dweight / 6,
         borderRadius: Dweight / 6

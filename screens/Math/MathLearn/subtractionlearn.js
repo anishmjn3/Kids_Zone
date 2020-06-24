@@ -47,7 +47,7 @@ export default class MyProject extends Component {
                             '#a40b04',//light brown
                             '#6a0f0b'//dark brown
                         ]}
-                        style={[styles.outerButtonStyle, styles.circleStyle]}
+                        style={[styles.circleStyle,styles.centerAlignStyle]}
                         start={{ x: 0.0, y: 0.05 }}
                         end={{ x: 0.5, y: 1 }}
                         locations={[0.3, 0.75]}
@@ -63,10 +63,10 @@ export default class MyProject extends Component {
 
         return (
 
-            <View style={styles.MainContainer}>
+            <View style={[styles.MainContainer,styles.centerAlignStyle]}>
                 <ImageBackground
                     source={require('./../../wood.jpg')}
-                    style={styles.imagebackgroundStyle}
+                    style={[styles.imagebackgroundStyle,styles.centerAlignStyle]}
                 >
                     <View style={{ flexDirection: 'row' }}>
                         {/* <ScrollView horizontal={true}> */}
@@ -86,7 +86,7 @@ export default class MyProject extends Component {
 
                         {/* </ScrollView> */}
                     </View>
-                    <View style={styles.table}>
+                    <View style={[styles.table,styles.centerAlignStyle]}>
                         <LinearGradient
                             colors={[
                                 '#a40b04',//light brown
@@ -95,6 +95,7 @@ export default class MyProject extends Component {
                             style={[
                                 styles.table,
                                 { flexDirection: 'column' }
+                                ,styles.centerAlignStyle
                             ]}
                             start={{ x: 0.0, y: 0.05 }}
                             end={{ x: 0.4, y: 1 }}
