@@ -22,6 +22,7 @@ import AdditionLearnScreen from './Math/MathLearn/additionlearn';
 import SubtractionLearnScreen from './Math/MathLearn/subtractionlearn';
 import MultiplicationLearnSCreen from './Math/MathLearn/multiplicationlearn';
 import DivisionLearnScreen from './Math/MathLearn/divisionlearn';
+import Alphabets from './Alphabets/Aphabetscreen'
 const Stack = createStackNavigator({
     Home: {
         screen: MainScreen,
@@ -33,6 +34,12 @@ const Stack = createStackNavigator({
         screen:DrawScreen,
         navigationOptions:{
             title:'Draw'
+        }
+    },
+    AlphabetsLearn:{
+        screen:Alphabets,
+        navigationOptions:{
+            title:'Alphabets'
         }
     },
     MathGame: {

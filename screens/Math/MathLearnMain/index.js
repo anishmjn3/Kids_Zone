@@ -71,7 +71,7 @@ export default class MathScreen extends React.Component {
                         >
                             <Text
                                 style={styles.headerfont}>
-                                Math Games
+                                Math Tables
                                 </Text>
                         </ImageBackground>
                     </View>

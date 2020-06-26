@@ -14,15 +14,22 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Confetti from 'react-native-confetti'
+// import Confetti from 'react-native-confetti'
 import { Transition } from 'react-native-reanimated';
 import { createStackNavigator, } from 'react-navigation-stack';
 import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import images from "./abcdpics/pics";
-import smallalphabet from "./abcdpics/alphabets";
-import largealphabets from './abcdpics/largealphabets';
+import images from "./../abcdpics/pics";
+import smallalphabet from "./alphabets";
+import largealphabets from './largealphabets';
+import Tts from 'react-native-tts';
+import AlphabetFull from './AlphabetFull';
 const { UIManager } = NativeModules;
+
+Tts.setDefaultLanguage('en-GB');
+Tts.setDefaultPitch(1.30)
+Tts.setDefaultRate(0.26)
+Tts.setDefaultVoice('com.apple.ttsbundle.Daniel-compact')
 
 UIManager.setLayoutAnimationEnabledExperimental &&
   UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -65,16 +72,21 @@ const FadeInView = (props) => {
 }
 
 class FirstScreen extends React.Component {
+  // constructor(props) {
+  //   Tts.speak(largealphabets[0] + " for " + AlphabetFull[0])
+
+  // }
+
   state = {
     w: 200,
     h: 200,
     t: 1
   }
-  componentDidMount() {
-    if(this._confettiView) {
-       this._confettiView.startConfetti();
-    }
-  }
+  // componentDidMount() {
+  //   if(this._confettiView) {
+  //      this._confettiView.startConfetti();
+  //   }
+  // }
   _onPress = () => {
     // Animate the update
     LayoutAnimation.spring();
@@ -83,15 +95,15 @@ class FirstScreen extends React.Component {
     else
 
       this.setState({ w: this.state.w - 20, h: this.state.h - 20 })
-    
-    }
+
+  }
   increasex(y) {
     if (y < 26) {
       increase = y + 1;
       // pop()
     }
     else {
-      increase = 26;
+      increase = 1;
       // buzzer()
     }
   }
@@ -112,24 +124,24 @@ class FirstScreen extends React.Component {
     // t = this.props.navigation.getParam('y')
     return (
       <View style={styles.container}>
-         {/* <Confetti ref={(node) => this._confettiView = node}/> */}
+        {/* <Confetti ref={(node) => this._confettiView = node}/> */}
         <FadeInView>
           <TouchableOpacity
             onPress={this._onPress}
           >
 
-
             <Image
-              source={images[this.state.t]}
+              source={images[this.state.t - 1]}
               style={{ height: this.state.h, width: this.state.w }}
             />
           </TouchableOpacity>
+          {/* <Text>{images[this.state.t-1]} </Text> */}
         </FadeInView>
         <Text style={{ fontSize: 100 }}>
-          {largealphabets[this.state.t-1]}
+          {largealphabets[this.state.t - 1]}
 
-          {smallalphabet[this.state.t - 1]}
-          </Text>
+          {/* {smallalphabet[this.state.t - 1]} */}
+        </Text>
         {/* <Text>{this.state.t}</Text> */}
         {this.increasex(this.state.t)}
         {this.decreasex(this.state.t)}
@@ -149,10 +161,15 @@ class FirstScreen extends React.Component {
             style={[styles.clearButtonStyle, styles.centerStyle]}
             onPress={() => {
               this._onPress()
-            this.setState({ t: decrease })
-            return(
-              <Confetti confetticount={50}/>
-            )
+              this.setState({ t: decrease })
+              if (this.state.t >= 2)
+                Tts.speak(largealphabets[this.state.t - 2] + " for " + AlphabetFull[this.state.t - 2])
+              if (this.state.t == 1)
+                Tts.speak(" A for Apple")
+
+              // return(
+              //   // <Confetti confetticount={50}/>
+              // )
             }}
           >
             <Text style={styles.clearbuttonText}>{'<='}</Text>
@@ -162,7 +179,9 @@ class FirstScreen extends React.Component {
             style={[styles.clearButtonStyle, styles.centerStyle]}
             onPress={() => {
               this._onPress()
-            this.setState({ t: increase })
+              this.setState({ t: increase })
+              if (this.state.t < 26)
+                Tts.speak(largealphabets[this.state.t] + " for " + AlphabetFull[this.state.t])
             }}
           >
             <Text style={styles.clearbuttonText}>{'=>'}</Text>
@@ -225,6 +244,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'yellow'
   },
   centerStyle: {
     justifyContent: 'center',

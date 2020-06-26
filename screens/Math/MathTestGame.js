@@ -60,7 +60,7 @@ export default class MathScreen extends React.Component {
                         >
                             <Text
                                 style={styles.headerfont}>
-                                Math Games
+                                Math Test
                                 </Text>
                         </ImageBackground>
                     </View>

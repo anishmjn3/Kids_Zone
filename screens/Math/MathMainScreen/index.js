@@ -119,6 +119,7 @@ export default class MathTestScreen extends React.Component {
                                         <Image
                                             style={styles.logoStyles}
                                             source={require('./learn.png')}
+                                            resizeMode='contain'
                                         />
                                     </View>
                                     <View>
@@ -155,6 +156,7 @@ export default class MathTestScreen extends React.Component {
                                         <Image
                                             style={styles.logoStyles}
                                             source={require('./gamemath.png')}
+                                            resizeMode='contain'
                                         />
                                     </View>
                                     <View>

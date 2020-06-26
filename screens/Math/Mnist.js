@@ -38,7 +38,8 @@ var colorarray = ["#000000", "#ffffff"]
 
 function ding() {
     var whoosh = new Sound('ding.mp3', Sound.MAIN_BUNDLE, () => {
-        // Play the sound with an onEnd callback
+        // Play the sound with an onEnd callback</Text>
+
         whoosh.play();
     });
 }
@@ -139,18 +140,19 @@ export default class App extends Component {
 
 
 
-            return //(
-            // <View style={[styles.centerStyle, { marginLeft: '3%' }]}>
-            {/* <TouchableOpacity
-                        onPress={() =>
-                            Alert.alert(res["label"])
-                        }
-                    >
-                        <Text key={id} style={styles.cameraText}>
-                            {x[i - 1]}
-                        </Text>
-                    </TouchableOpacity> */}
-            // </View>
+            return 
+            // (
+            //     <View style={[styles.centerStyle, { marginLeft: '3%' }]}>
+            //         <TouchableOpacity
+            //             onPress={() =>
+            //                 Alert.alert(res["label"])
+            //             }
+            //         >
+            //             <Text key={id} style={styles.cameraText}>
+            //                 {q[0]}
+            //             </Text>
+            //         </TouchableOpacity>
+            //     </View>
             // )
         });
 
@@ -193,7 +195,7 @@ export default class App extends Component {
                 // <Animated.View style={{opacity:fadeAnim}}>
 
                 <Image
-                    source={images["apple"]}
+                    source={images[0]}
                     style={{
                         // height: Dimensions.get('screen').height * 0.06,
                         // width: Dimensions.get('screen').width / 7
@@ -396,7 +398,7 @@ export default class App extends Component {
                         height: '3%',
                         flexDirection: 'row'
                     }]}>
-                    {/* <Text>{q[0]}</Text> */}
+                    <Text>{q[0]}</Text>
                 </View>
                 <View style={[
                     styles.centerStyle, {
@@ -423,8 +425,19 @@ export default class App extends Component {
                         style={[styles.clearButtonStyle, styles.centerStyle]}
                         onPress={() => {
                             // this.clearComp();
-                            if (q[0] == this.state.x)
+                            if (q[0] == this.state.x) {
                                 ding()
+                                this.setState({ x: increase });
+                                q[0] = ''
+                                if (increase > 9)
+                                    this.setState({ x: 1 })
+                                this.clearComp();
+                                // buzzer()
+                                // else
+                                // pop()
+
+
+                            }
                             else
                                 buzzer()
                             this.setState({ colorarraypos: 1 })
@@ -481,13 +494,13 @@ export default class App extends Component {
                             this.setState({ x: increase });
                             q[0] = ''
                             if (increase > 9)
-                                this.setState({x:1})
-                                // buzzer()
-                            else
-                                pop()
+                                this.setState({ x: 1 })
+                            // buzzer()
+                            // else
+                            // pop()
                         }}
                     >
-                        <Text style={styles.clearbuttonText}>=></Text>
+                        <Text style={styles.clearbuttonText}>{"=>"}</Text>
 
                     </TouchableOpacity>
 

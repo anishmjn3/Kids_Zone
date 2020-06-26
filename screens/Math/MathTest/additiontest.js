@@ -10,8 +10,18 @@ import {
     Vibration,
     Alert
 } from 'react-native';
+
+import Sound from 'react-native-sound';
 import LinearGradient from 'react-native-linear-gradient';
 import { styles } from './styles';
+
+function ding() {
+    var whoosh = new Sound('ding.mp3', Sound.MAIN_BUNDLE, () => {
+        // Play the sound with an onEnd callback</Text>
+
+        whoosh.play();
+    });
+}
 
 export default class MyProject extends Component {
 
@@ -56,7 +66,11 @@ export default class MyProject extends Component {
             return (
                 <View style={[styles.answerStyle, { backgroundColor: '#a40b04' }]}>
                     <TouchableOpacity
-                        onPress={this.GenerateRandomNumber}
+                        onPress={()=>{
+                            ding()
+                            this.GenerateRandomNumber()
+                            
+                        }}
                         style={styles.answerStyle}
                     >
                         <LinearGradient
