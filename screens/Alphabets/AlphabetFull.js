@@ -24,5 +24,6 @@ export default Alphabetfull=[
     "Wheel",
     "X mas Tree",
     "Yak",
-    "Zebra"
+    "Zebra",
+    "Apple"
 ]

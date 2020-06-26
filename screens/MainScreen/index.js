@@ -22,7 +22,15 @@ Tts.setDefaultRate(0.26)
 Tts.setDefaultVoice('com.apple.ttsbundle.Daniel-compact')
 
 export default class MainScreen extends React.Component {
-
+    constructor(props){
+        super(props);
+        this.state = {
+          timePassed: false
+        };
+      }
+    // componentWillMount(){
+    //     Tts.stop()
+    // }
     render() {
         return (
             <View style={[styles.container]}>
@@ -122,7 +130,8 @@ export default class MainScreen extends React.Component {
                                 <TouchableOpacity
                                     onPress={() => {
                                         this.props.navigation.navigate('AlphabetsLearn')
-                                        // Tts.speak(" A for Apple")
+                                        setTimeout(function(){},2000)
+                                        Tts.speak(" A for Apple")
 
                                     }}
                                     style={styles.aligncenterStyle}

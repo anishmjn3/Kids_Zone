@@ -163,8 +163,10 @@ class FirstScreen extends React.Component {
               this._onPress()
               this.setState({ t: decrease })
               if (this.state.t >= 2)
+              Tts.stop()
                 Tts.speak(largealphabets[this.state.t - 2] + " for " + AlphabetFull[this.state.t - 2])
-              if (this.state.t == 1)
+              if (this.state.t ==1)
+              Tts.stop()
                 Tts.speak(" A for Apple")
 
               // return(
@@ -180,9 +182,12 @@ class FirstScreen extends React.Component {
             onPress={() => {
               this._onPress()
               this.setState({ t: increase })
-              if (this.state.t < 26)
+              if (this.state.t <=26)
+              {
+              Tts.stop()
                 Tts.speak(largealphabets[this.state.t] + " for " + AlphabetFull[this.state.t])
-            }}
+              }
+              }}
           >
             <Text style={styles.clearbuttonText}>{'=>'}</Text>
 

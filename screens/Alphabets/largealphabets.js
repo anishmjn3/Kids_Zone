@@ -24,5 +24,6 @@ export default largealphabets=[
     "W",
     "X",
     "Y",
-    "Z"
+    "Z",
+    "A"
 ]
