@@ -202,6 +202,7 @@ export default class App extends Component {
                         height: this.state.imageh,
                         width: this.state.imagew
                     }}
+                    resizeMode='contain'
                 />
                 // </Animated.View>
             )
@@ -398,7 +399,7 @@ export default class App extends Component {
                         height: '3%',
                         flexDirection: 'row'
                     }]}>
-                    <Text>{q[0]}</Text>
+                    {/* <Text>{q[0]}</Text> */}
                 </View>
                 <View style={[
                     styles.centerStyle, {

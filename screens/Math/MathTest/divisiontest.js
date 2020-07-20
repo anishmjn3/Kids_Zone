@@ -12,6 +12,15 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { styles } from './styles'
+import Sound from 'react-native-sound';
+
+function ding() {
+    var whoosh = new Sound('ding.mp3', Sound.MAIN_BUNDLE, () => {
+        // Play the sound with an onEnd callback</Text>
+
+        whoosh.play();
+    });
+}
 
 export default class MyProject extends Component {
 
@@ -36,15 +45,15 @@ export default class MyProject extends Component {
 
         })
     }
-    // DelayFunction(){
-    //     setTimeout(function(){
+    DelayFunction(){
+        setTimeout(function(){
 
-    //         //Put All Your Code Here, Which You Want To Execute After Some Delay Time.
-    //         Alert.alert("Correct Answer!!!");
-    //         // this.GenerateRandomNumber()
+            //Put All Your Code Here, Which You Want To Execute After Some Delay Time.
+            // Alert.alert("Correct Answer!!!");
+            
 
-    //       }, 5);
-    // }
+          }, 1005);
+    }
 
     randomnumbelow10() {
         var a = Math.floor(Math.random() * 10) + 1;
@@ -64,6 +73,7 @@ export default class MyProject extends Component {
                 <View style={[styles.answerStyle, { backgroundColor: '#a40b04' }]}>
                     <TouchableOpacity
                         onPress={() => {
+                            ding();
                             this.GenerateRandomNumber();
                             // this.DelayFunction();
                         }}

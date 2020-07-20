@@ -77,12 +77,12 @@ export default class MathScreen extends React.Component {
                     </View>
                     <View style={[styles.bodyStyle, styles.aligncenterStyle]}>
                         <View style={styles.firstrow}>
-                            {this.learnbutton('Add', '3+2=5', 'AdditionTable')}
-                            {this.learnbutton('Subtract', '4-2=2', 'SubtractionTable')}
+                            {this.learnbutton('Add', 'Table', 'AdditionTable')}
+                            {this.learnbutton('Subtract', 'Table', 'SubtractionTable')}
                         </View>
                         <View style={styles.firstrow}>
-                        {this.learnbutton('Mutiply', '6X3=2', 'MultiplicationTable')}
-                        {this.learnbutton('Divide', '6/3=2', 'DivisionTable')}
+                        {this.learnbutton('Mutiply', 'Table', 'MultiplicationTable')}
+                        {this.learnbutton('Divide', 'Table', 'DivisionTable')}
 
                         </View>
                     </View>

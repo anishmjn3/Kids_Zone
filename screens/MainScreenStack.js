@@ -124,13 +124,13 @@ const Stack = createStackNavigator({
             headerTintColor: "#fff",
             color: 'red',
             // headerStatusBarHeight:Dimensions.get('screen').height*0.001,
-            headerRight: () => (
-                <Button
-                    onPress={() => alert('This is a button!')}
-                    title="Info"
-                    color="#000"
-                />
-            ),
+            // headerRight: () => (
+            //     <Button
+            //         onPress={() => alert('This is a button!')}
+            //         title="Info"
+            //         color="#000"
+            //     />
+            // ),
         }
 
     },
