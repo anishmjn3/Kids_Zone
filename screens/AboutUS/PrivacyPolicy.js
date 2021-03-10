@@ -3,11 +3,13 @@ import { View, Text, ScrollView,Dimensions } from 'react-native';
 import HTML from 'react-native-render-html';
 // import { styles } from '.styles';
 import { Header} from 'react-native-elements';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 const Dheight=Dimensions.get('window').height;
 
 export default class PrivacyPolicy extends React.Component {
     render() {
         return (
+          <SafeAreaProvider>
             <View
                 style={{
                     flex: 1,
@@ -155,6 +157,7 @@ export default class PrivacyPolicy extends React.Component {
                     />
                 </ScrollView>
             </View>
+            </SafeAreaProvider>
         )
     }
 }

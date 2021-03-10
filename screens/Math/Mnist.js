@@ -475,9 +475,9 @@ export default class App extends Component {
                         onPress={() => {
                             this.clearComp();
                             this.setState({ x: decrease });
-                            if (decrease <= 0)
-                                buzzer()
-                            else
+                            // if (decrease <= 0)
+                            //     buzzer()
+                            // else
                                 pop()
                         }}
                     >
@@ -507,7 +507,7 @@ export default class App extends Component {
                                 this.setState({ x: 1 })
                             // buzzer()
                             // else
-                            // pop()
+                            pop()
                         }}
                     >
                         <Text style={styles.clearbuttonText}>{"=>"}</Text>
