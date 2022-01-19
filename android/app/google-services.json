@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "214198616986",
+    "project_id": "kids-zone-a31ba",
+    "storage_bucket": "kids-zone-a31ba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214198616986:android:aa439c702c763a1f1bb023",
+        "android_client_info": {
+          "package_name": "com.anishapps.kidszone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "214198616986-ctgiu2guih26rra3e0i69uufbg4ohknk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHM63kwetq0wItdq3pVqMp5N-aqAXJJdU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "214198616986-ctgiu2guih26rra3e0i69uufbg4ohknk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
